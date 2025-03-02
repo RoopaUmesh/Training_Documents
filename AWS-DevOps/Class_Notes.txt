@@ -495,3 +495,95 @@ Next AWS DevOps Services ***
 	--> AWS Free Tier Account https://aws.amazon.com/console/
 	
 	
+			- Active Email_Id
+			- Mobile Phone Number 
+			- Active Credit/Debit Cards
+			
+			
+		Login to AWS Console as a root user.
+		
+			- Email_ID 	# User Name 
+			- Password
+			
+		IAM User 
+			- User-ID 
+			- Password 
+			
+		Billing Management 
+				
+	
+	AWS CodeCommit 
+	AWS CodeBuild 
+	AWS CodeDeploy 	
+	AWS CodePipeline
+	AWS EBS 
+	ECS 
+	ECR
+	EKS 
+	Kubernetes 
+	
+	Distributed Version Control System :
+	
+		- github 
+		- gitlab 
+		- bitbucket 
+		- AWS CodeCommit 
+		- Azure Repos 
+		
+		
+	Java Web Application : 
+	
+		Application Build :::
+		
+			- Maven/Gradle/Ant 
+			
+			- Maven --> pom.xml 	# Used to maintain the dependencies and plugins to perform build
+					--> maven goals # Task to be perform 
+						-> compile --> mvn compile  
+						-> test    --> mvn test 		# compile and perform unit testing
+						-> package --> mvn package		# compile, test and create artifacts in the target folder
+						
+						
+						
+					Build : It is a process of compiling the source code and create artifacts(*.exec/*.war)
+					Unit Test 
+					Promoted to Target Environments
+					
+			- Build Environment : 
+				- jenkins_slaveNode/gitlab-ci/github-actions(runner)/AWS CodeBuild(EC2 Instance)/Azure(Azure Agent)
+			
+				VM --> Install the Build Tools - git,jdk,maven,docker
+				
+				AWS CodeBuild(EC2 Instance) 
+				
+					--> Static Provisioning  -- Manually Create the EC2 Instance & Install Require Build Tools
+													Create the artifacts
+					
+					--> Dynamic Provisioning --> At Build Time we the EC2 Instance will be created and preform the build
+												 Once the build process is completed Build Server will be automatically removed
+												 --> Saved in a external storage - AWS S3 Bucket / EBS / github
+					
+		
+		
+			- Artifactory Library :
+			
+				--> Store the Application Artifacts 
+				--> S3 bucket 
+				
+				--> Containerized Applications 
+				
+						-- Create an Application Image using Artifacts
+						-- Deploy that image in target thru Container Registry.
+						
+
+Next :
+
+	Create IAM User.
+	IAM Groups 
+	IAM Policies 
+	IAM Roles 
+	
+	CodeBuild Project 
+	CodeDeploy
+	Code Pipeline 
+		
