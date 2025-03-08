@@ -588,8 +588,9 @@ Next :
 	Code Pipeline 
 		
 ######################
-Day 3 - 3rd Mar. 2025
+Day 3 - 8th Mar. 2025
 ######################			
+		
 	
 
 	Create IAM User.
