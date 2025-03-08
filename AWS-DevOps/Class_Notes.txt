@@ -587,3 +587,242 @@ Next :
 	CodeDeploy
 	Code Pipeline 
 		
+######################
+Day 3 - 8th Mar. 2025
+######################			
+		
+	
+
+	Create IAM User.
+	IAM Groups 
+	IAM Policies 
+	IAM Roles 
+	
+	CodeBuild Project 
+	CodeDeploy
+	Code Pipeline
+		
+		
+		Free Tier Account --> 12 Months 
+		
+		VMs - 750Hrs/Month 
+		
+		10 VMs - 75Hrs/Months 
+		
+	AWS Billing Management Console :
+	
+	
+		As a root user --> Billing and Cost Management Console 
+		
+		Choose free Tier 
+		
+	AWS Regions :
+	
+		- AWS Availability Zones (Data Centers)
+			
+			- Terraform / AWS Cloudformation Templates 		# Automate Resource Provisioning
+			
+			
+	IAM Console :
+			
+	Create IAM User				# Any User who expects access to AWS Console/Resources 
+	IAM Groups 					# IAM User Groups 
+	IAM Policies 				# Define the permissions - to ensure User Authorization
+								# Policies can be directly assign to any IAM User/Group 
+								# It can be assigned to any IAM Role 
+	IAM Roles 					# Define the profiles used to access between any resources 	
+								# Role can be assigned to any AWS Services
+	
+	
+	AWS Account Owner --> root user. (Account/Enterprise Level) - Complete Admin Access  
+		- Email_ID 
+		- Password 
+		
+	IAM Users 			--> Users to work with AWS Resources --> to ensure User Authentication
+	
+	IAM Groups :
+	
+		developer1,2,3,4,5 User ID
+			- Access to a CodeBuild Project, CodeDeploy, Code Pipeline
+			
+		dev_user_group1						# Create a user group 
+			developer1,2,3,4,5 User ID		# Add all the user to this group 
+			
+			Assign the required access at the group level. Access to a CodeBuild Project, CodeDeploy, Code Pipeline
+			
+		RBAC : - Role Based Access Control 
+		
+	IAM Roles :					# Define the profiles used to access between any resources
+								# It composed of IAM Policies
+
+		Virtual Machine(EC2 Instances)
+			--> Create Application Build 
+			--> Create Application Artifacts --> *.war 
+			
+			--> S3 Bucket 		
+			
+			To assign Access to any AWS Service to access.
+			
+	To Create IAM User/Group/Policies/Role # First login to AWS Console as a root user. 
+	
+	Create : IAM User/Group/Policies/Role
+	
+	https://aws.amazon.com/console/						# Use to login as a root user
+	
+	Create User Group and add the policies :
+	
+			AdministratorAccess
+			AmazonS3FullAccess
+			AWSCodeBuildAdminAccess
+			AWSCodeCommitFullAccess
+			AWSCodeDeployFullAccess
+			AWSCodePipeline_FullAccess
+			
+			
+	AWS CodeCommit :
+		- It is used to manage the application source code.
+		- Is a Distributed Version Control System
+		- Alternative : github/gitlab/bitbucket
+		
+		
+	Application Build :
+	
+		- Source Code Repo						github
+		- Compile the Code and create artifacts
+	
+	
+	AWS CodeBuild :
+	
+		- Used to perform Application Build - compile and create artifacts 
+		
+		- Build Tools :
+		
+			Java based web application :	EC2 Instance 
+			
+				- maven/gradle 
+				
+				- maven goal : clean package 	# Compile,Unit Test,Create Artifacts
+				
+				
+				- pom.xml 						# Project Object Model 
+				
+				
+				- buildspec.yaml 				# Custom build specifaction script 
+												# Created by the developers 
+												# Maintained as part of Source Code Repositories
+				
+			Create Artifacts --> will be saved in S3 Bucket 
+	
+	Application Project:	
+	
+		Java Springboot Web Application :
+		
+			Java-Web-App-Project1:			Project Root Folder 
+			
+				src 
+					main 				# Business Logics
+						*.java 
+						*.java 
+					
+					test 				# Test Cases 
+						*.java 
+						*.java
+				
+				target/ 
+				
+				app.properties 
+				
+				security_cred
+				
+				app.config 
+				
+				pom.xml 				# Define the properties of Application Build 
+										# Maintains the Dependencies and plugins required to perform Application Build
+		
+				buildspec.yaml 			# Required for CodeBuild Project 
+										# This Defines the build tools and goals to be executed in build server dynamically.
+				
+				
+				
+			Maven Goal: 
+			
+				mvn clean package 
+				
+				mvn compile 			# Compile the Source 
+				
+				mvn test 				# Perform Code Compilation & Unit Testing 
+				
+				mvn package 			# Perform Code Compilation, Unit Testing and Create Artifacts in target folder 
+				
+				mvn clean				# Clean the target folder 
+			
+			
+			Build Server :	
+			
+				--> git,jdk,maven 
+
+	
+	Code Build:	
+	
+		- SCM_Checkout in the Build Server(Dynamic EC2_Instance)	
+		
+		https://github.com/Edu-AWS-Devops-Mar-2025/devops-java-webapp.git
+		
+		- Read the buildspec.yaml from the source code repository
+		
+		- Install and configure the build tools 
+		
+		- Create the Artifacts 
+		
+		- Save the artifacts in the s3 bucket.
+		
+	Jenkins --> CodeBuild/CodeDeploy/CodePipeline 
+	
+	
+	1. Prepare Java Maven Application Source Code Repository in GITHub
+	
+	2. Create S3 Bucket 
+	
+	3. Create a folder in S3 Bucket 
+	
+	4. Create CodeBuild Project using GitHub Repository and S3 as input references.
+	
+	
+	Overview of DevOps CICD Pipeline ::::
+	
+		- SCM_Checkout								# CodeBuild Service			1 EC2 Instance (Created Dynamically)
+		- Application Build 						# CodeBuild Service
+		- Unit Testing 								# CodeBuild Service
+		- Create Artifacts							# CodeBuild Service
+		- Save Artifacts in S3 Bucket 				# CodeBuild Service
+		
+		
+		- Promote the Changes to Target Server		# CodeDeploy Service		1 EC2 Instance 
+		
+		
+		- CodePipeline is an integration of CodeCommit/GitHub, CodeBuild and CodeDeploy 
+		
+	Environments ::
+	
+	Non-Prod 																Prod-Environments
+	
+		Dev 
+			# Prepare source code 
+			# Push the source code to remote git repository
+		
+		Build 
+			# Compile and Create Artifacts
+			# Save the Artifacts in Artifactory Library (S3 Bucket)
+		
+		QA 
+			# Download the artifacts from s3 bucket 
+		
+		UAT 														===> 			Prod Server 
+
+
+
+Next :
+
+	Create CodeBuild Project 
+	
+	Create CodeDeploy 
